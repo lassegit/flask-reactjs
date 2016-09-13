@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Sign in{% endblock %}
+
+{% block body %}
+<div class="container offset-top">
+    
+    {% include "alert.html" %}
+
+    <div class="row">
+
+        <div class="col-md-6 offset-md-3">
+            <h1>Sign in</h1>
+            
+            <p class="lead">A new way to send and receive packages</p>
+
+            <hr>
+
+            <div class="social-links cf text-xs-center">
+                <a href="/oauth2/facebook" class="btn btn-primary facebook pull-xs-left">Log in with Facebook</a>
+                <a href="/oauth2/google" class="btn btn-danger google pull-xs-right">Log in with Google</a>
+            </div>
+
+            <hr>
+
+            <p class="text-xs-center">Or</p>
+
+            <form role="form" method="post">
+                {{ form.hidden_tag() }}
+
+                {% if form.email.errors %}
+                    <div class="form-group has-danger">
+                        {{ form.email(class_="form-control form-control-danger", placeholder="Email") }}
+
+                        {% for e in form.email.errors %}
+                            <div class="form-control-feedback">{{e}}</div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="form-group">
+                        {{ form.email(class_="form-control", placeholder="Email") }}
+                    </div>
+                {% endif %}
+                
+
+                {% if form.password.errors %}
+                    <div class="form-group has-danger">
+                        {{ form.password(class_="form-control form-control-danger", placeholder="Password") }}
+                        
+                        {% for e in form.password.errors %}
+                            <div class="form-control-feedback">{{e}}</div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="form-group">
+                        {{ form.password(class_="form-control", placeholder="Password") }}
+                    </div>
+                {% endif %}
+
+                <button type="submit" class="btn btn-primary">Log in</button>
+
+                <a href="/signup" class="btn btn-secondary pull-xs-right">Sign up</a>
+            </form>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

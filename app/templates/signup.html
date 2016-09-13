@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}{{_('Sign up')}}{% endblock %}
+
+{% block body %}
+<div class="container">
+    
+    {% include "alert.html" %}
+
+    <div class="row">
+    
+        <div class="col-md-6 offset-md-3">
+            <h1>{{_('Sign up')}}</h1>
+            
+            <p class="lead">{{_('A new way to send and receive packages')}}</p>
+
+            <hr>
+
+            <div class="social-links cf">
+                <a href="/oauth2/facebook" class="btn btn-primary facebook pull-xs-left">{{_('Sign up with Facebook')}}</a>
+                <a href="/oauth2/google" class="btn btn-danger google pull-xs-right">{{_('Sign up with Google')}}</a>
+            </div>
+
+            <hr>
+
+            <p class="text-xs-center">{{_('Or')}}</p>
+
+            <form role="form" method="post">
+                {{ form.hidden_tag() }}
+
+                {% if form.email.errors %}
+                    <div class="form-group has-danger">
+                        {{ form.email(class_="form-control form-control-danger", placeholder="Email") }}
+
+                        {% for e in form.email.errors %}
+                            <div class="form-control-feedback">{{e}}</div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="form-group">
+                        {{ form.email(class_="form-control", placeholder="Email") }}
+                    </div>
+                {% endif %}
+                
+                {% if form.username.errors %}
+                    <div class="form-group has-danger">
+                        {{ form.username(class_="form-control form-control-danger", placeholder="Name") }}
+
+                        {% for e in form.username.errors %}
+                            <div class="form-control-feedback">{{e}}</div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="form-group">
+                        {{ form.username(class_="form-control", placeholder="Name") }}
+                    </div>
+                {% endif %}
+                
+
+                {% if form.password.errors %}
+                    <div class="form-group has-danger">
+                        {{ form.password(class_="form-control form-control-danger", placeholder="Password") }}
+                        
+                        {% for e in form.password.errors %}
+                            <div class="form-control-feedback">{{e}}</div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="form-group">
+                        {{ form.password(class_="form-control", placeholder="Password") }}
+                    </div>
+                {% endif %}
+
+
+                <button type="submit" class="btn btn-primary">{{_('Sign up')}}</button>
+
+                <a href="/signin" class="btn btn-secondary pull-xs-right">{{_('Sign in')}}</a>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

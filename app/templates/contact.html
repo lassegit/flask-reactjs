@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}{{_('Contact')}}{% endblock %}
+
+{% block meta%}
+    <meta property="og:title" content="">
+    <meta property="og:image" content="http://dummyimage.com/1024x512/e52d27/fff.png&text=Post2.eu">
+    <meta property="og:description" content="">
+{% endblock %}
+
+{% block body %}
+<div class="faq-page">
+    <div class="container">
+        <div class="row cf">
+            <div class="col-md-8 offset-top">
+                {% include "alert.html" %} 
+                
+                <h1>{{_('Contact')}}</h1>
+
+                <p class="lead">{{_('Got a question or suggestion?')}}</p>
+                
+                <hr>
+                
+                <form class="form-horizontal" method="post">
+                    {{ form.hidden_tag() }}
+
+                    <div class="form-group">
+                        <label for="email" class="col-sm-2 control-label">{{_('Email')}}:</label>
+                        {% if form.email.errors %}
+                            <div class="col-sm-10 has-error has-feedback">
+                            {% for e in form.email.errors %}
+                                <label class="control-label">{{e}}</label>
+                            {% endfor %}
+                            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        {% else %}
+                            <div class="col-sm-10">
+                        {% endif %}
+                            {% if current_user.is_authenticated() and current_user.email %}
+                                <input type="email" class="form-control" id="email" name="email" placeholder="example@domain.com" value="{{current_user.email}}">
+                            {% else %}
+                                {{form.email(class_="form-control")}}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="col-sm-2 control-label">{{_('Message')}}:</label>
+
+                        {% if form.message.errors %}
+                            <div class="col-sm-10 has-error has-feedback">
+                            {% for e in form.message.errors %}
+                                <label class="control-label">{{e}}</label>
+                            {% endfor %}
+                            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        {% else %}
+                            <div class="col-sm-10">
+                        {% endif %}
+                            {{form.message(class_="form-control", rows="5")}}
+                        </div>
+                    </div>
+
+                    {% if current_user.is_anonymous() %}
+                        <div class="form-group">
+                            <label for="human" class="col-sm-2 control-label">2 + 2 = ?</label>
+                            {% if form.checksum.errors %}
+                                <div class="col-sm-10 has-error has-feedback">
+                                {% for e in form.checksum.errors %}
+                                    <label class="control-label">{{e}}</label>
+                                {% endfor %}
+                                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                            {% else %}
+                                <div class="col-sm-10">
+                            {% endif %}
+                                {{form.checksum(class_="form-control")}}
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    <div class="form-group">
+                        <div class="col-sm-10 col-sm-offset-2">
+                            <input id="submit" name="submit" type="submit" value="{{_('Send')}}" class="btn btn-primary">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

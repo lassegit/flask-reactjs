@@ -1,0 +1,8 @@
+{
+  "directory": "app/static/bower_components",
+  "ignoredDependencies": [
+    "bootstrap",
+    "bootstrap-sass",
+    "bootstrap-sass-official"
+  ]
+}
