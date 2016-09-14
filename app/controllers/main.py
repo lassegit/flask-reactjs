@@ -1,15 +1,25 @@
 from flask import Blueprint, render_template, flash, request, redirect, url_for, current_app
 from flask_login import login_user, logout_user, login_required, current_user
 from app.forms import ContactForm
-from app.extensions import cache
+from app.extensions import cache, mailgun
 from app.models.database import db
 
 main = Blueprint('main', __name__)
 
-@main.route('/', methods=['GET'])
+@main.route('/')
 # @cache.cached(timeout=300, unless=lambda: current_user.is_authenticated())
 def home():
     return render_template('index.html')
+
+# @main.route('/features')
+# # @cache.cached(timeout=300, unless=lambda: current_user.is_authenticated())
+# def features():
+#     return render_template('features.html')
+
+@main.route('/cover')
+# @cache.cached(timeout=300, unless=lambda: current_user.is_authenticated())
+def cover():
+    return render_template('cover.html')
 
 @main.route('/about')
 # @cache.cached(timeout=300, unless=lambda: current_user.is_authenticated())

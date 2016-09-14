@@ -41,7 +41,7 @@ class LoginForm(Form):
 
         if not check_validate:
             return False
-        
+
         # Does our the exist
         user = User.query.filter_by(email=self.email.data).first()
         if not user:
@@ -85,14 +85,14 @@ class ContactForm(Form):
         if not check_validate:
             return False
 
-        if current_user.is_anonymous() and int(self.checksum.data) != 4:
-            self.checksum.errors.append(lazy_gettext('The answer is: 4'))
+        if current_user.is_anonymous() and self.checksum.data != '4':
+            self.checksum.errors.append('The answer is: 4')
             return False
 
         return True
 
 class PasswordForm(Form):
-    old_password = PasswordField(u'Old password', validators=[])    
+    old_password = PasswordField(u'Old password', validators=[])
     new_password = PasswordField(u'New password', validators=[
         validators.DataRequired(),
         validators.EqualTo('confirm_password', message='Passwords must match')

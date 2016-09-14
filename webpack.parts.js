@@ -126,7 +126,7 @@ exports.extractCSS = function(path, target) {
             loaders: [
                 {
                     test: /\.(css|scss|sass)$/i,
-                    loader: ExtractTextPlugin.extract('style', 'css', 'sass'),
+                    loader: ExtractTextPlugin.extract('style', 'css?sourceMap', 'sass?sourceMap'),
                     include: path
                 }
             ]

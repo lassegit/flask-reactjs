@@ -28,6 +28,9 @@
                     <li class="nav-item {{ 'active' if request.path == '/about' else '' }}">
                         <a href="/about" class="nav-link">About</a>
                     </li>
+                    <li class="nav-item {{ 'active' if request.path == '/contact' else '' }}">
+                        <a href="/contact" class="nav-link">Contact</a>
+                    </li>
                 </ul>
 
                 {% if current_user.is_anonymous() %}

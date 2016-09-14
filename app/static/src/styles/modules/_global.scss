@@ -3,8 +3,15 @@
 }
 
 .social-links a {
-    width:49%;
+    width:100%;
+    margin:5px 0;
 }
+    @media (min-width: 768px) {
+        .social-links a {
+            width:49%;
+            margin:0;
+        }
+    }
 
 .cf:after {
     visibility: hidden;
