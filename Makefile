@@ -11,6 +11,7 @@ env:
 	virtualenv -p /usr/local/bin/python3 venv && \
 	. venv/bin/activate && \
 	make deps
+
 deps:
 	pip install -r requirements.txt
 
@@ -23,8 +24,11 @@ lint:
 test:
 	py.test tests
 
+local:
+	source venv/bin/activate && ./manage.py runserver
+
 dev:
-	source venv/bin/activate && uwsgi --ini uwsgi-dev.ini --py-autoreload 1
+	source venv/bin/activate && uwsgi --ini uwsgi.ini --py-autoreload 1
 
 prod:
 	source venv/bin/activate && uwsgi --ini uwsgi.ini

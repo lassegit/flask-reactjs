@@ -15,7 +15,6 @@ app/static/dev
 # Packages
 *.egg
 *.egg-info
-build/
 eggs
 bin
 sdist
