@@ -43,11 +43,15 @@ You can run two commands with the webpack server: `webpack --dev` for developmen
 
 All webpack configuration are in `webpack.config.js` and `webpack.parts.js`.
 
+Note: If you want to use [react-lite](https://github.com/Lucifier129/react-lite) instead, you can enable it in the `webpack.config.js` under `resolve alias`.
+
 ## ReactJS command line
 Since the ReactJS/Redux is based on [React Webpack Generator including Redux support](https://github.com/stylesuxx/generator-react-webpack-redux) you can also use its command line tools.notice
 
 
 ```
+    Install dependencies
+
     npm install -g yo
     npm install -g generator-react-webpack-redux
 
