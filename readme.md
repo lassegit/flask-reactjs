@@ -1,5 +1,3 @@
-# Flask and ReactJS Boilerplate
-
 ## Contains:
 
 - SQLALCHEMY with basic user schema for authentication in `app/models`
@@ -14,7 +12,7 @@
 
 - Webpack asset management
 
-Others include Babel internationalizing, WTForms, timeago jinja filter (`app/tpl_filter.py`) and a simple json serializer in `app/models/serialize.py`.
+Others include Babel internationalizing, WTForms, timeago jinja filter (`app/tpl_filter.py`) and a simple json serializer in `app/models/serialize.py.
 
 ## Get started:
 
