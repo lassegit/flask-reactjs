@@ -33,18 +33,22 @@ class ProdConfig(Config):
     STATIC_FOLDER = 'build'
     TEMPLATE_FOLDER = 'build'
 
+    DOWNLOAD_FACEBOOK_PHOTO = True
+
 class DevConfig(Config):
     DEBUG = True
     DEBUG_TB_INTERCEPT_REDIRECTS = False
     SEND_FILE_MAX_AGE_DEFAULT = 0
 
-    SQLALCHEMY_DATABASE_URI = 'postgresql://username:password@localhost/testdb'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://username:password@localhost/dbname'
     SQLALCHEMY_POOL_TIMEOUT = 30
 
     CACHE_TYPE = 'simple'
 
     STATIC_FOLDER = 'static/dev'
     TEMPLATE_FOLDER = 'templates'
+
+    DOWNLOAD_FACEBOOK_PHOTO = True
 
 
 

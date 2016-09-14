@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}{{_('Sign up')}}{% endblock %}
+{% block title %}Sign up{% endblock %}
 
 {% block body %}
 <div class="container">
@@ -10,20 +10,20 @@
     <div class="row">
     
         <div class="col-lg-6 offset-lg-3">
-            <h1>{{_('Sign up')}}</h1>
+            <h1>Sign up</h1>
             
-            <p class="lead">{{_('A new way to send and receive packages')}}</p>
+            <p class="lead">A new way to send and receive packages</p>
 
             <hr>
 
             <div class="social-links cf">
-                <a href="/oauth2/facebook" class="btn btn-primary facebook pull-xs-left">{{_('Sign up with Facebook')}}</a>
-                <a href="/oauth2/google" class="btn btn-danger google pull-xs-right">{{_('Sign up with Google')}}</a>
+                <a href="/oauth2/facebook" class="btn btn-primary facebook pull-xs-left">Sign up with Facebook</a>
+                <a href="/oauth2/google" class="btn btn-danger google pull-xs-right">Sign up with Google</a>
             </div>
 
             <hr>
 
-            <p class="text-xs-center">{{_('Or')}}</p>
+            <p class="text-xs-center">Or</p>
 
             <form role="form" method="post">
                 {{ form.hidden_tag() }}
@@ -72,9 +72,9 @@
                 {% endif %}
 
 
-                <button type="submit" class="btn btn-primary">{{_('Sign up')}}</button>
+                <button type="submit" class="btn btn-primary">Sign up</button>
 
-                <a href="/signin" class="btn btn-secondary pull-xs-right">{{_('Sign in')}}</a>
+                <a href="/signin" class="btn btn-secondary pull-xs-right">Sign in</a>
             </form>
         </div>
 

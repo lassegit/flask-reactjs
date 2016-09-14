@@ -67,9 +67,6 @@ def create_app(object_name, env='prod'):
     # Mailgun
     mailgun.init_app(app)
 
-    # Languages
-    babel.init_app(app)
-
     # Register blueprints
     app.register_blueprint(main)
     app.register_blueprint(auth)
@@ -82,6 +79,16 @@ def create_app(object_name, env='prod'):
 
     # Import custom template filters
     app.register_blueprint(tpl_filter)
+
+    # Enable error logging
+    # if app.config['ENV'] == 'prod':
+    #     file_handler = RotatingFileHandler('app.log', maxBytes=1024 * 1024 * 100, backupCount=20)
+    #     formatter = logging.Formatter( "%(asctime)s | %(pathname)s:%(lineno)d | %(funcName)s | %(levelname)s | %(message)s ")
+    #     file_handler.setFormatter(formatter)
+    #     app.logger.addHandler(file_handler)
+
+    # Language
+    babel.init_app(app)
 
     # @babel.localeselector
     # def get_locale():
@@ -100,11 +107,5 @@ def create_app(object_name, env='prod'):
     #                 break
 
     #     g.locale = locale
-
-    # if app.config['ENV'] == 'prod':
-    #     file_handler = RotatingFileHandler('app.log', maxBytes=1024 * 1024 * 100, backupCount=20)
-    #     formatter = logging.Formatter( "%(asctime)s | %(pathname)s:%(lineno)d | %(funcName)s | %(levelname)s | %(message)s ")
-    #     file_handler.setFormatter(formatter)
-    #     app.logger.addHandler(file_handler)
 
     return app

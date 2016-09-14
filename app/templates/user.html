@@ -1,167 +1,31 @@
 {% extends "base.html" %}
 
-{% block title %}{{_('Your profile')}}{% endblock %}
+{% block title %}User profile{% endblock %}
 
 {% block body %}
-<div class="container profile offset-top">
+<div class="container offset-top">
     {% include "alert.html" %}
-    
-    {% include "user_alert.html" %}
-    
+        
     <div class="row">
-        <div class="col-md-4 col-md-push-8">
-            {% include 'user_sidebar.html' %}
-
-            {% if user.is_admin() %}
-                <label>{{_('Admin')}}</label> 
-                <div class="list-group">
-                    <a href="/admin/packages" class="list-group-item">
-                        <span class="glyphicon glyphicon-info-sign"></span>
-                        {{_('Admin area')}}
-                    </a>
-                </div>
+        <div class="col-lg-8">
+            {% if user.username %}
+                <h1>{{user.username}}</h1>
+            {% else %}
+                <h1>My profile</h1>
             {% endif %}
+            <hr>
+
+            Joined {{user.created_at|timeago}}.
         </div>
 
-        <div class="col-md-8 col-md-pull-4">
-
-            <ul class="nav nav-tabs">
-                <li role="presentation" class="active">
-                    <a href="/user">
-                        {{_('Packages')}} 
-                        <span class="badge">{{packages.total}}</span>
-                    </a>
-                </li>
-                <li role="presentation">
-                    <a href="/user/trip">
-                        {{_('Weekly trips')}} 
-                    </a>
-                </li>
-            </ul>
-
-            <div class="profile__package-list cf offset-top">
-                {% if packages.items %}
-                    {% for package in packages.items %}
-                        <div class="media">
-                            <div class="media-left">
-                                {% if package.status == 'passive' %}
-                                    <div class="media-object passive">
-                                        <span class="media-object__inner">
-                                            <span class="media-object__text">
-                                                {{_('Not paid')}}
-                                            </span>
-                                        </span>
-                                    </div>
-                                {% elif package.status == 'waiting' %}
-                                    <div class="media-object waiting">
-                                        <span class="media-object__inner">
-                                            <span class="media-object__text">
-                                                {{_('Waiting')}}
-                                            </span>
-                                        </span>
-                                    </div>
-                                {% elif package.status == 'moving' %}
-                                    <div class="media-object moving">
-                                        <span class="media-object__inner">
-                                            <span class="media-object__text">
-                                                {{_('Moving')}}
-                                            </span>
-                                        </span>
-                                    </div>
-                                {% else %}
-                                    <div class="media-object delivered">
-                                        <span class="media-object__inner">
-                                            <span class="media-object__text">
-                                                {{_('Delivered')}}
-                                            </span>
-                                        </span>
-                                    </div>
-                                {% endif %}
-                            </div>
-
-                            <div class="media-body">
-                                <h4 class="media-heading">
-                                    <a href="/package/{{package.pid}}">
-                                        {{package.base_from.title}}
-
-                                        <span class="glyphicon glyphicon-chevron-right"></span>
-
-                                        {{package.base_to.title}}
-                                    </a>
-                                </h4>
-                                <p>
-                                    {{package.created_at | timeago}}
-                                    {{_('by')}}
-                                    {% if package.user.picture %}
-                                        <img src="/files/{{package.user.picture}}" style="width:20px">
-                                    {% endif %}
-                                    {{package.user.username}}
-                                </p>
-
-                                {% if package.user_deliver %}
-                                    <div class="profile__package-pickup">
-                                        {% if package.status == 'moving' %}
-                                            {{_('Being delivered by')}} 
-                                        {% else %}
-                                            {{_('Delivered by')}}
-                                        {% endif %}
-                                        {% if package.user_deliver.picture %}
-                                            <img src="/files/{{package.user_deliver.picture}}">
-                                        {% endif %}
-
-                                        {{package.user_deliver.username}}
-                                        -
-                                        <span title="{{package.updated_at}}">{{package.updated_at | timeago}}</span>
-                                    </div>
-                                {% endif %}
-                            </div>
-                        </div>
-                    {% endfor %}
-                {% else %}
-                    <div class="offset-top text-center well">
-                        <h4>{{_('No packages yet')}}!</h4>
-                        
-                        <p>{{_('You can send a package from a shop near you to a shop near your end destination. It is way cheaper and easier than others.')}}</p>
-                        
-                        <a href="/send" class="btn btn-primary">
-                            <span class="glyphicon glyphicon-send"></span> 
-                            {{_('Send package')}}
-                        </a>
-                    </div>
-                {% endif %}
-            </div>
-
-            <nav>
-                <ul class="pagination">
-                    {% if packages.has_prev %}
-                        <li>
-                            <a href="/user/{{packages.prev_num}}">
-                                <span>&laquo;</span>
-                            </a>
-                        </li>
-                    {% endif %}
-                    
-                    {% for page in packages.iter_pages() %}
-                        {% if page %}
-                            {% if page != packages.page %}
-                                <li><a href="/user/{{page}}">{{page}}</a></li>
-                              {% else %}
-                                <li class="active"><a href="/user/{{page}}">{{page}}</a></li>
-                              {% endif %}                        
-                        {% else %}
-                            <li class="disabled"><a href="#">…</a></li>
-                        {% endif %}
-                    {% endfor %}
-
-                    {% if packages.has_next %}
-                        <li>
-                            <a href="/user/{{packages.next_num}}">
-                                <span>&raquo;</span>
-                            </a>
-                        </li>
-                    {% endif %}
+        <div class="col-lg-4">
+            <div class="card">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><a href="/user/edit">Edit profile</a></li>
+                    <li class="list-group-item"><a href="/user/password">Change password</a></li>
+                    <li class="list-group-item"><a href="/logout">Logout</a></li>
                 </ul>
-            </nav>
+            </div>
         </div>
 
     </div>

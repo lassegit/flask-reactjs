@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}{{_('Edit your profile')}}{% endblock %}
+{% block title %}Edit your profile{% endblock %}
 
 {% block body %}
     <div class="container offset-top">
@@ -9,80 +9,61 @@
         
         <div class="row">
             
-            <!-- htmlmin:ignore -->
-            <div class="col-md-8">
-                <h1 class="h2">{{_('Edit profile')}}</h1>
+            <div class="col-lg-6 offset-lg-3">
+                <h1>Edit profile</h1>
+                
                 <hr>
 
-                <form role="form" method="post" class="">
+                <form role="form" method="post" class="cf">
                     {{ form.hidden_tag() }}
 
                     {% if form.username.errors %}
-                        <div class="form-group has-error has-feedback">
+                        <div class="form-group has-danger">
+                            {{ form.username(class_="form-control form-control-danger", placeholder="Username") }}
+
                             {% for e in form.username.errors %}
-                                <label class="control-label">{{e}}</label>
+                                <div class="form-control-feedback">{{e}}</div>
                             {% endfor %}
-                            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        </div>
                     {% else %}
                         <div class="form-group">
+                            {{ form.username(class_="form-control", placeholder="Username") }}
+                        </div>
                     {% endif %}
-                        {{ form.username(class_="form-control", placeholder="Name") }}
-                    </div>
 
                     {% if form.email.errors %}
-                        <div class="form-group has-error has-feedback">
+                        <div class="form-group has-danger">
+                            {{ form.email(class_="form-control form-control-danger", placeholder="Email") }}
+
                             {% for e in form.email.errors %}
-                                <label class="control-label">{{e}}</label>
+                                <div class="form-control-feedback">{{e}}</div>
                             {% endfor %}
-                            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        </div>
                     {% else %}
                         <div class="form-group">
+                            {{ form.email(class_="form-control", placeholder="Email") }}
+                        </div>
                     {% endif %}
-                        {{ form.email(class_="form-control", placeholder="Email") }}
-                    </div>
 
                     {% if form.phone.errors %}
-                        <div class="form-group has-error has-feedback">
+                        <div class="form-group has-danger">
+                            {{ form.phone(class_="form-control form-control-danger", placeholder="Phone") }}
+
                             {% for e in form.phone.errors %}
-                                <label class="control-label">{{e}}</label>
+                                <div class="form-control-feedback">{{e}}</div>
                             {% endfor %}
-                            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        </div>
                     {% else %}
                         <div class="form-group">
+                            {{ form.phone(class_="form-control", placeholder="Phone") }}
+                        </div>
                     {% endif %}
-                        {{ form.phone(class_="form-control", placeholder="Phone number") }}
-                    </div>
 
-                    {% if form.body.errors %}
-                        <div class="form-group has-error has-feedback">
-                            {% for e in form.body.errors %}
-                                <label class="control-label">{{e}}</label>
-                            {% endfor %}
-                            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
-                    {% else %}
-                        <div class="form-group">
-                    {% endif %}
-                        {{ form.body(class_="form-control", placeholder="...", maxlength="255") }}
-                    </div>
+                    <button type="submit" class="btn btn-primary">Update</button>
 
-                    <a class="btn btn-default pull-right hidden-xs" href="/user">
-                        {{_('Change password')}}
-                    </a>
-
-                    <button type="submit" class="btn btn-primary">
-                        <span class="glyphicon glyphicon-ok"></span>
-                        {{_('Update')}}
-                    </button>
-
-                    <a class="btn btn-default" href="/user">
-                        <span class="glyphicon glyphicon-remove"></span>
-                        {{_('Cancel')}}
-                    </a>
+                    <a class="btn btn-secondary pull-xs-right" href="/user">Cancel</a>
                 </form>
-            </div>
-            <!-- htmlmin:ignore -->
-            <div class="col-md-4">
-                {% include 'user_sidebar.html' %}
+
             </div>
         </div>
     </div>

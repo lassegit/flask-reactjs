@@ -19,7 +19,7 @@ def user():
 @profile.route('/user/edit', methods=['GET', 'POST'])
 @login_required
 def edit():
-    user = helper.user_sidebar()
+    user = User.query.get(current_user.get_id())
 
     form = UserForm()
     if form.username.data is None:
@@ -28,36 +28,29 @@ def edit():
         form.email.data = user.email
     if form.phone.data is None:
         form.phone.data = user.phone
-    if form.body.data is None:
-        form.body.data = user.body
 
     if form.validate_on_submit():
         user = db.session.query(User).get(current_user.get_id())
         user.username = form.username.data
         user.email = form.email.data
-        
+
         if form.phone.data:
             user.phone = form.phone.data.replace(' ', '')
         else:
             user.phone = None
 
-        if form.body.data:
-            user.body = form.body.data
-        else:
-            user.body = None
-
         db.session.add(user)
         db.session.commit()
 
         return redirect(request.args.get('next') or '/user')
-    
+
     return render_template('user_edit.html', form=form, user=user)
 
 
 @profile.route('/user/password', methods=['GET', 'POST'])
 @login_required
 def password():
-    user = helper.user_sidebar()
+    user = User.query.get(current_user.get_id())
     form = PasswordForm()
 
     if form.validate_on_submit():

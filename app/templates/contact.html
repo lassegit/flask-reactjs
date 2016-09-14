@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}{{_('Contact')}}{% endblock %}
+{% block title %}Contact{% endblock %}
 
 {% block meta%}
     <meta property="og:title" content="">
@@ -15,9 +15,9 @@
     <div class="row">
 
         <div class="col-lg-6 offset-lg-3"> 
-            <h1>{{_('Contact')}}</h1>
+            <h1>Contact</h1>
 
-            <p class="lead">{{_('Got a question or suggestion?')}}</p>
+            <p class="lead">Got a question or suggestion?</p>
             
             <hr>
             
@@ -34,7 +34,7 @@
                     </div>
                 {% else %}
                     <div class="form-group">
-                        {{ form.email(class_="form-control", placeholder="Email") }}
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{current_user.email}}">
                     </div>
                 {% endif %}
 
