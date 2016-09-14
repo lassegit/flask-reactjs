@@ -33,7 +33,7 @@ class ProdConfig(Config):
     STATIC_FOLDER = 'build'
     TEMPLATE_FOLDER = 'build'
 
-    DOWNLOAD_FACEBOOK_PHOTO = True
+    DOWNLOAD_FACEBOOK_PHOTO = True # Downloads Facebook profile picture
 
 class DevConfig(Config):
     DEBUG = True

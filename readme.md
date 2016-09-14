@@ -10,9 +10,11 @@
 
 - Bootstrap v4 which can easily be replaced. Styles are in: `app/static/src/styles`
 
-- Mandrill transactional mails. All settings are in: `app/settings.py`
+- Mailgun transactional mails. All settings are in: `app/settings.py`
 
 - Webpack asset management
+
+Others include Babel internationalizing, WTForms, timeago jinja filter (`app/tpl_filter.py`) and a simple json serializer in `app/models/serialize.py`.
 
 ## Get started:
 

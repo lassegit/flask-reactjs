@@ -190,25 +190,26 @@ def facebook_auth():
     db.session.add(authorize)
     db.session.commit()
 
-    fb_picture = facebook_me.data.get('picture')
-    if fb_picture and authorize.picture != fb_picture['data']['url']:
-        try:
-            file_name = shortuuid.uuid() + '.jpg'
-            file_folder = os.path.join(current_app.root_path, current_app.config['UPLOAD_FOLDER'])
-            file_path = os.path.join(file_folder, file_name)
+    if current_app.config['DOWNLOAD_FACEBOOK_PHOTO']:
+        fb_picture = facebook_me.data.get('picture')
+        if fb_picture and authorize.picture != fb_picture['data']['url']:
+            try:
+                file_name = shortuuid.uuid() + '.jpg'
+                file_folder = os.path.join(current_app.root_path, current_app.config['UPLOAD_FOLDER'])
+                file_path = os.path.join(file_folder, file_name)
 
-            url = 'https://graph.facebook.com/{}/picture?type=large&redirect=true&access_token={}'.format(facebook_me.data.get('id'), access_token)
-            urllib.request.urlretrieve(url, file_path)
+                url = 'https://graph.facebook.com/{}/picture?type=large&redirect=true&access_token={}'.format(facebook_me.data.get('id'), access_token)
+                urllib.request.urlretrieve(url, file_path)
 
-            authorize.picture = fb_picture['data']['url']
-            db.session.add(authorize)
+                authorize.picture = fb_picture['data']['url']
+                db.session.add(authorize)
 
-            user = User.query.get(authorize.user_id)
-            user.picture = file_name
-            db.session.add(user)
-            db.session.commit()
-        except Exception:
-            pass
+                user = User.query.get(authorize.user_id)
+                user.picture = file_name
+                db.session.add(user)
+                db.session.commit()
+            except Exception:
+                pass
 
     if current_user.is_anonymous():
         user = User.query.get(authorize.user_id)

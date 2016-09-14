@@ -2,6 +2,7 @@ from app.models.database import db
 import app.helper as helper
 
 class Serializable(object):
+    # Json serializer: return jsonify(comments.serialized)
     @property
     def serialized(self):
         blacklist = ['_sa_instance_state']
@@ -25,5 +26,5 @@ class Serializable(object):
                     }
                 else:
                     result[k] = v
-        
+
         return result
