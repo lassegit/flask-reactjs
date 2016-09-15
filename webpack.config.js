@@ -29,7 +29,7 @@ switch(TARGET) {
                 path: PATHS.build,
                 publicPath: '/',
                 filename: 'js/[name].[chunkhash].js',
-                // chunkFilename: '[chunkhash].js'
+                chunkFilename: '[chunkhash].js'
             },
             plugins: [],
             resolve: {
