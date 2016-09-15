@@ -76,7 +76,7 @@ exports.minify = function() {
         plugins: [
             new webpack.optimize.DedupePlugin(),
             new webpack.DefinePlugin({
-              'process.env.NODE_ENV': '"production"'
+              'process.env.NODE_ENV': 'production'
             }),
             new webpack.optimize.UglifyJsPlugin({
                 compress: {
@@ -115,10 +115,10 @@ exports.clean = function(path) {
 }
 
 exports.extractCSS = function(path, target) {
-    var filename = '[name].css';
+    var filename = 'style/[name].css';
 
     if (target === 'BUILD') {
-        filename = '[name].[chunkhash].css';
+        filename = 'style/[name].[chunkhash].css';
     }
 
     return {

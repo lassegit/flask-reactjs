@@ -28,8 +28,8 @@ switch(TARGET) {
             output: {
                 path: PATHS.build,
                 publicPath: '/',
-                filename: '[name].[chunkhash].js',
-                chunkFilename: '[chunkhash].js'
+                filename: 'js/[name].[chunkhash].js',
+                // chunkFilename: '[chunkhash].js'
             },
             plugins: [],
             resolve: {
@@ -72,7 +72,7 @@ switch(TARGET) {
             output: {
                 path: PATHS.dev,
                 publicPath: '/',
-                filename: '[name].js',
+                filename: 'js/[name].js',
             },
             plugins: [
                 new CopyWebpackPlugin([

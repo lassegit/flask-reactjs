@@ -1,15 +1,14 @@
 {
-  "app": {
-    "js": "/app.js"
-  },
-  "style": {
-    "js": "/style.js",
-    "css": "/style.css"
-  },
-  "vendor": {
-    "js": "/vendor.js"
-  },
-  "manifest": {
-    "js": "/manifest.js"
-  }
+    "manifest": {
+        "js": "/js/manifest.js"
+    },
+    "vendor": {
+        "js": "/js/vendor.js"
+    },
+    "app": {
+        "js": "/js/app.js"
+    },
+    "style": {
+        "css": "/style/style.css"
+    }
 }
