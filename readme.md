@@ -57,6 +57,10 @@ Since the ReactJS/Redux is based on [React Webpack Generator including Redux sup
 
     ----
 
+    Navigate to: app/static
+
+    ----
+
     Generating new reducers
 
     yo react-webpack-redux:reducer my/namespaced/reducers/name
