@@ -6,6 +6,10 @@
     "keywords": [],
     "author": "",
     "license": "MIT",
+    "scripts": {
+        "build": "webpack --build",
+        "dev": "webpack --dev"
+    },
     "devDependencies": {
         "assets-webpack-plugin": "^3.4.0",
         "babel": "^6.5.2",
@@ -35,7 +39,7 @@
         "svg-url-loader": "^1.1.0",
         "url-loader": "^0.5.7",
         "webpack": "^1.13.2",
-        "webpack-dev-server": "^1.15.1",
+        "webpack-dev-server": "^3.1.4",
         "webpack-merge": "^0.14.1",
         "webpack-validator": "^2.2.7"
     },

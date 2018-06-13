@@ -29,7 +29,7 @@ The configurations are in `app/settings.py`. You can customize the `Makefile` to
 
 Then install the static assets and run webpack:
 ```
-    npm install && webpack --dev (to build run webpack --build)
+    npm install && npm run dev (to build run npm run build)
 ```
 
 Then install Flask, create the database schema:
