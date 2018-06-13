@@ -1,3 +1,5 @@
+![Screenshot][screenshot.png]
+
 ## Contains:
 
 - SQLALCHEMY with basic user schema for authentication in `app/models`
@@ -23,12 +25,24 @@ The configurations are in `app/settings.py`. You can customize the `Makefile` to
     git clone https://github.com/lassegit/flask-reactjs my-project-name
     cd my-project-name && rm -r .git
 
+```
+
+Then install the static assets and run webpack:
+```
+    npm install && webpack --dev (to build run webpack --build)
+```
+
+Then install Flask, create the database schema:
+
+```
     make env
 
     make createdb
 
     make local
 ```
+
+It is now running locally on: [localhost:5000](http://localhost:5000).
 
 You can also run the flask using:
 
